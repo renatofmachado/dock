@@ -17,6 +17,17 @@ func main() {
 				Usage:   "Enable a service",
 				Action:  commands.Enable,
 			},
+			{
+				Name:    "start",
+				Aliases: []string{"s"},
+				Usage:   "Start a service",
+				Action:  commands.Start,
+			},
+			{
+				Name:   "stop",
+				Usage:  "Stop a service",
+				Action: commands.Stop,
+			},
 		},
 	}
 

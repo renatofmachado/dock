@@ -2,7 +2,7 @@ package services
 
 func redis() *Service {
 	service := Service{
-		Name:         "Redis",
+		Name:         "redis",
 		Organization: "library",
 		Image:        "redis",
 		Port:         "6379",

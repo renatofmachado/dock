@@ -4,11 +4,10 @@ import (
 	"bytes"
 	"log"
 	"os/exec"
-	"strings"
 )
 
 func Exec(binary string, command string) (string, error) {
-	args := strings.Fields(command)
+	args := getArguments(command)
 
 	cmd := exec.Command(binary, args...)
 
@@ -24,4 +23,32 @@ func Exec(binary string, command string) (string, error) {
 	}
 
 	return string(cmdOutput.Bytes()), nil
+}
+
+func getArguments(command string) []string {
+	args := []string{}
+	arg := ""
+	seenQuote := false
+
+	for _, char := range command {
+		c := string(char)
+
+		if c == "\"" {
+			seenQuote = !seenQuote
+			c = ""
+		}
+
+		if c == " " && !seenQuote {
+			args = append(args, arg)
+			arg = ""
+		} else {
+			arg = arg + c
+		}
+	}
+
+	if arg != "" {
+		args = append(args, arg)
+	}
+
+	return args
 }
