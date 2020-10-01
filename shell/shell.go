@@ -2,7 +2,7 @@ package shell
 
 import (
 	"bytes"
-	"log"
+	"errors"
 	"os/exec"
 )
 
@@ -19,7 +19,7 @@ func Exec(binary string, command string) (string, error) {
 
 	if err != nil {
 		errorOutput := string(cmdError.Bytes())
-		log.Fatal(errorOutput)
+		return "", errors.New(errorOutput)
 	}
 
 	return string(cmdOutput.Bytes()), nil
