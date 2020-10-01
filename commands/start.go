@@ -25,7 +25,13 @@ func Start(c *cli.Context) error {
 	containerID, err := docker.FindContainerId(service.Name, tag)
 
 	if err != nil {
-		return err
+		Enable(c)
+
+		containerID, err = docker.FindContainerId(service.Name, tag)
+
+		if err != nil {
+			return err
+		}
 	}
 
 	fmt.Printf("Starting %s@%s (ID: %s)\n", service.Name, tag, containerID)
