@@ -21,6 +21,7 @@ type Service struct {
 
 var services = map[string]*Service{
 	"redis": redis(),
+	"mongo": mongo(),
 }
 
 func Resolve(serviceName string) (*Service, error) {
