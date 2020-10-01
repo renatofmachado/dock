@@ -4,7 +4,7 @@ func mongo() *Service {
 	service := Service{
 		Name:         "mongo",
 		Organization: "library",
-		Image:        "redis",
+		Image:        "mongo",
 		Port:         "27017",
 		Template:     "-p ${:port}:27017 -e MONGO_INITDB_ROOT_USERNAME=${:root_user} -e MONGO_INITDB_ROOT_PASSWORD=${:root_password} -v ${:volume}:/data/db ${:organization}/${:image_name}:${:tag}",
 		Parameters: []Parameter{
